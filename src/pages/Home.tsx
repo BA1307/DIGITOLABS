@@ -6,6 +6,7 @@ import GlassCard from '../components/GlassCard';
 import SectionHeader from '../components/SectionHeader';
 import { courses } from '../data/courses';
 import CourseMobileCarousel from '../components/CourseMobileCarousel';
+import CourseCard from '../components/CourseCard';
 
 const AnimatedCounter = ({ value, duration = 1.8 }: { value: number; duration?: number }) => {
   const [count, setCount] = useState(0);
@@ -242,33 +243,13 @@ export default function Home({ setCurrentPage }: HomeProps) {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
-              <GlassCard className="h-full flex flex-col justify-between text-left">
-                <div>
-                  <div className="flex justify-between items-center mb-4">
-                    <span className="px-2.5 py-1 text-[10px] font-bold font-mono text-brand-cyan bg-brand-cyan/10 border border-brand-cyan/25 rounded-md">
-                      {course.duration}
-                    </span>
-                    <span className="text-xs text-gray-500 font-semibold uppercase font-mono">
-                      {course.skillLevel}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-white mb-2 leading-tight">
-                    {course.title}
-                  </h3>
-                  <p className="text-sm text-gray-400 mb-6 line-clamp-3">
-                    {course.description}
-                  </p>
-                </div>
-                <button
-                  onClick={() => {
-                    setCurrentPage('courses');
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }}
-                  className="w-full py-2.5 rounded-xl border border-white/5 bg-white/5 hover:bg-white/10 text-white font-medium text-xs tracking-wider uppercase transition-all cursor-pointer text-center"
-                >
-                  Learn More
-                </button>
-              </GlassCard>
+              <CourseCard
+                course={course}
+                onClick={() => {
+                  setCurrentPage('courses');
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+              />
             </motion.div>
           ))}
         </div>

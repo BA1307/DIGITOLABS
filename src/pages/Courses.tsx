@@ -6,6 +6,7 @@ import { courses } from '../data/courses';
 import GlassCard from '../components/GlassCard';
 import SectionHeader from '../components/SectionHeader';
 import CourseMobileCarousel from '../components/CourseMobileCarousel';
+import CourseCard from '../components/CourseCard';
 
 interface CoursesProps {
   setCurrentPage: (page: PageType) => void;
@@ -73,7 +74,7 @@ export default function Courses({ setCurrentPage }: CoursesProps) {
       {/* Courses List Section */}
       <section className="relative z-10 p-6 md:p-8">
         {/* Courses Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filteredCourses.map((course) => (
               <motion.div
@@ -84,57 +85,10 @@ export default function Courses({ setCurrentPage }: CoursesProps) {
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4 }}
               >
-                <GlassCard className="h-full flex flex-col justify-between text-left group hover:border-white/10">
-                  <div>
-                    {/* Card Header Info */}
-                    <div className="flex justify-between items-center mb-6">
-                      <div className="p-3 bg-white/5 border border-white/5 rounded-xl group-hover:border-white/15 transition-all">
-                        {getIcon(course.iconName)}
-                      </div>
-                      <div className="flex items-center space-x-2.5">
-                        <span className="flex items-center space-x-1 text-xs text-gray-400 font-mono bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
-                          <Clock className="h-3.5 w-3.5 text-brand-cyan mr-1" />
-                          {course.duration}
-                        </span>
-                        <span className="flex items-center space-x-1 text-xs text-gray-400 font-mono bg-white/5 px-2.5 py-1 rounded-md border border-white/5">
-                          <Award className="h-3.5 w-3.5 text-brand-magenta mr-1" />
-                          {course.skillLevel}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Card Content */}
-                    <h3 className="font-display text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-brand-cyan transition-colors">
-                      {course.title}
-                    </h3>
-                    <p className="text-sm text-gray-400 leading-relaxed mb-6 font-sans">
-                      {course.description}
-                    </p>
-                  </div>
-
-                  {/* Card CTA */}
-                  <div className="pt-4 border-t border-white/5 flex gap-4">
-                    <button
-                      id={`btn-learn-more-${course.id}`}
-                      onClick={() => setActiveCourseId(course.id)}
-                      className="flex-1 py-3 px-4 rounded-xl bg-white/5 hover:bg-white/10 text-white font-semibold text-xs tracking-wider uppercase border border-white/5 hover:border-white/10 transition-all cursor-pointer text-center flex items-center justify-center space-x-1.5"
-                    >
-                      <BookOpen className="h-4 w-4 text-brand-cyan" />
-                      <span>See Modules</span>
-                    </button>
-                    <button
-                      id={`btn-enroll-${course.id}`}
-                      onClick={() => {
-                        setCurrentPage('contact');
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                      }}
-                      className="flex-1 py-3 px-4 rounded-xl bg-gradient-to-r from-brand-magenta/15 to-brand-violet/15 hover:from-brand-magenta/30 hover:to-brand-violet/30 text-white font-semibold text-xs tracking-wider uppercase border border-brand-magenta/20 transition-all cursor-pointer text-center flex items-center justify-center space-x-1.5"
-                    >
-                      <span>Quick Enroll</span>
-                      <ArrowRight className="h-4 w-4 text-brand-magenta" />
-                    </button>
-                  </div>
-                </GlassCard>
+                <CourseCard
+                  course={course}
+                  onClick={() => setActiveCourseId(course.id)}
+                />
               </motion.div>
             ))}
           </AnimatePresence>

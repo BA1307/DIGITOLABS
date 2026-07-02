@@ -12,6 +12,10 @@ export interface Course {
   benefits: string[];
   iconName: string;
   category: 'applications' | 'ai' | 'marketing' | 'creative';
+  imageUrl?: string;
+  rating?: number;
+  ratingCount?: number;
+  instructorName?: string;
 }
 
 export interface FAQItem {
