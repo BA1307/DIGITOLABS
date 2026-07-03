@@ -233,11 +233,12 @@ export default function Home({ setCurrentPage }: HomeProps) {
           </button>
         </div>
 
-        {/* Desktop View Grid */}
-        <div className="hidden md:grid grid-cols-3 gap-8">
+        {/* Desktop View Flex Grid */}
+        <div className="hidden md:flex flex-row flex-wrap justify-center gap-0 max-w-[1035px] mx-auto">
           {featuredCourses.map((course, idx) => (
             <motion.div
               key={course.id}
+              className="flex-shrink-0"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -329,51 +330,6 @@ export default function Home({ setCurrentPage }: HomeProps) {
             {/* Glowing backgrounds */}
             <div className="absolute top-1/4 right-1/4 w-[250px] h-[250px] bg-brand-magenta/15 rounded-full blur-[80px] -z-10" />
           </div>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      {/* Testimonials Section */}
-      <section id="testimonials-section" className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24 md:mb-32 py-12 md:py-16 px-6 md:px-12">
-        <SectionHeader
-          title="What Our Professional Graduates Say"
-          subtitle="Real results from students and corporate professionals who upgraded their tech workflows with us."
-          gradientType="gold"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {testimonials.map((test, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.15 }}
-            >
-              <GlassCard className="text-left flex flex-col justify-between h-full hover:border-white/10">
-                <div>
-                  <div className="flex space-x-1.5 mb-6">
-                    {[...Array(test.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-amber-400 fill-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm sm:text-base text-gray-300 leading-relaxed italic mb-6">
-                    "{test.quote}"
-                  </p>
-                </div>
-                <div className="border-t border-white/5 pt-4 flex justify-between items-center">
-                  <div>
-                    <h4 className="text-sm font-semibold text-white">{test.name}</h4>
-                    <span className="text-xs text-gray-500">{test.role}</span>
-                  </div>
-                  <span className="text-[10px] font-mono bg-white/5 border border-white/5 text-brand-cyan px-2 py-1 rounded">
-                    {test.course}
-                  </span>
-                </div>
-              </GlassCard>
-            </motion.div>
-          ))}
         </div>
       </section>
 

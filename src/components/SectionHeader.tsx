@@ -6,6 +6,7 @@ interface SectionHeaderProps {
   subtitle?: string;
   align?: 'left' | 'center';
   gradientType?: 'coral' | 'cyan' | 'magenta' | 'blue' | 'lime' | 'emerald' | 'orange' | 'gold' | 'sunset' | 'default';
+  titleClassName?: string;
 }
 
 export default function SectionHeader({
@@ -13,7 +14,8 @@ export default function SectionHeader({
   title,
   subtitle,
   align = 'center',
-  gradientType = 'default'
+  gradientType = 'default',
+  titleClassName
 }: SectionHeaderProps) {
   const isCenter = align === 'center';
   
@@ -50,7 +52,7 @@ export default function SectionHeader({
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className={`font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-4 leading-tight`}
+        className={`font-display ${titleClassName || 'text-3xl sm:text-4xl md:text-5xl'} font-extrabold tracking-tight text-white mb-4 leading-tight`}
       >
         {isCenter ? (
           <>

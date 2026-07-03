@@ -16,6 +16,7 @@ export interface Course {
   rating?: number;
   ratingCount?: number;
   instructorName?: string;
+  price?: string;
 }
 
 export interface FAQItem {

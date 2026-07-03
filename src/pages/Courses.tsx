@@ -13,7 +13,6 @@ interface CoursesProps {
 }
 
 export default function Courses({ setCurrentPage }: CoursesProps) {
-  const [selectedCategory, setSelectedCategory] = useState<'all' | 'applications' | 'ai' | 'marketing' | 'creative'>('all');
   const [activeCourseId, setActiveCourseId] = useState<string | null>(null);
 
   const getIcon = (iconName: string) => {
@@ -26,16 +25,12 @@ export default function Courses({ setCurrentPage }: CoursesProps) {
     }
   };
 
-  const filteredCourses = selectedCategory === 'all'
-    ? courses
-    : courses.filter(c => c.category === selectedCategory);
-
   const activeCourse = courses.find(c => c.id === activeCourseId);
 
   return (
     <div id="courses-view" className="relative pt-28 pb-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      {/* Page Header and Filters */}
+      {/* Page Header */}
       <section className="relative z-10 mb-16 p-6 md:p-12">
         <SectionHeader
           badge="Academic Catalog"
@@ -43,43 +38,18 @@ export default function Courses({ setCurrentPage }: CoursesProps) {
           subtitle="Explore our industry-standard training programs. All modules are fully practical, project-centric, and directed by veteran instructors."
           gradientType="blue"
         />
-
-        {/* Course Filter Tabs */}
-        <div className="flex flex-wrap justify-center gap-2.5 mt-8">
-          {(['all', 'applications', 'ai', 'marketing', 'creative'] as const).map((cat) => {
-            const isActive = selectedCategory === cat;
-            const label = cat === 'all' ? 'All Classes'
-                        : cat === 'applications' ? 'Computer Apps'
-                        : cat === 'ai' ? 'Artificial Intelligence'
-                        : cat === 'marketing' ? 'Digital Marketing'
-                        : 'Content Creation';
-            return (
-              <button
-                id={`filter-${cat}`}
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all duration-300 cursor-pointer border ${
-                  isActive
-                    ? 'bg-gradient-to-r from-brand-magenta to-brand-violet text-white border-transparent shadow-lg shadow-brand-magenta/15'
-                    : 'bg-white/5 text-gray-400 border-white/5 hover:text-white hover:bg-white/10'
-                }`}
-              >
-                {label}
-              </button>
-            );
-          })}
-        </div>
       </section>
 
       {/* Courses List Section */}
       <section className="relative z-10 p-6 md:p-8">
-        {/* Courses Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Courses Flex Row Grid */}
+        <div className="hidden md:flex flex-row flex-wrap justify-center gap-0 max-w-[1035px] mx-auto">
           <AnimatePresence mode="popLayout">
-            {filteredCourses.map((course) => (
+            {courses.map((course) => (
               <motion.div
                 layout
                 key={course.id}
+                className="flex-shrink-0"
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
@@ -97,7 +67,7 @@ export default function Courses({ setCurrentPage }: CoursesProps) {
         {/* Mobile Swipe-Enabled Right-to-Left Course Slider */}
         <div className="block md:hidden my-8">
           <CourseMobileCarousel
-            courses={filteredCourses}
+            courses={courses}
             onLearnMore={(course) => setActiveCourseId(course.id)}
             onEnroll={() => {
               setCurrentPage('contact');

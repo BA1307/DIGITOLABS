@@ -30,7 +30,8 @@ export const courses: Course[] = [
     imageUrl: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800',
     rating: 4.8,
     ratingCount: 312,
-    instructorName: 'Dr. Frank Joseph'
+    instructorName: 'Makoba (TE)',
+    price: 'Ksh 12,000'
   },
   {
     id: 'ai-productivity',
@@ -61,7 +62,8 @@ export const courses: Course[] = [
     imageUrl: 'https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800',
     rating: 4.9,
     ratingCount: 480,
-    instructorName: 'Eng. Edwin Robert'
+    instructorName: 'Makoba (TE)',
+    price: 'Ksh 15,000'
   },
   {
     id: 'digital-marketing',
@@ -92,7 +94,8 @@ export const courses: Course[] = [
     imageUrl: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800',
     rating: 4.7,
     ratingCount: 225,
-    instructorName: 'Jhon Doe'
+    instructorName: 'Makoba (TE)',
+    price: 'Ksh 14,000'
   },
   {
     id: 'content-creation',
@@ -123,6 +126,7 @@ export const courses: Course[] = [
     imageUrl: 'https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=800',
     rating: 4.8,
     ratingCount: 195,
-    instructorName: 'Sarah Jenkins'
+    instructorName: 'Makoba (TE)',
+    price: 'Ksh 13,000'
   }
 ];
